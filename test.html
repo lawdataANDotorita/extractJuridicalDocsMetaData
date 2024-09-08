@@ -1,0 +1,807 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="windows-1255"/>
+    
+	<link rel="stylesheet" href="./css/mobileStyle.css?v=181020_1"/>
+	<style>/* #2 */
+		body,html{
+			direction:rtl;
+			text-align:right;
+		}
+		@supports (-webkit-touch-callout: none) { /* #3 */
+			body,html{
+				direction:ltr;
+			}
+			body *{
+				direction:rtl;
+			}
+		}		
+		#eDocNmWrapper{
+			text-align:center;
+			margin:16px;
+			font-family:david;
+			font-size:22px;
+			color:#f2692b;
+			font-weight:bold;
+		}
+		.usingInternalDoc,.usingExternalDoc{
+			background:transparent;
+			padding:10px;
+		}
+		.usingInternalDoc{
+			justify-content:center;
+		}
+		.usingInternalDoc .fontStyleHdr,
+		.usingInternalDoc .fontStyle{
+			font-family:david;
+		}
+		.usingInternalDoc .fontStyleHdr{
+			font-size:22px;
+			font-weight:bold;
+		}
+		.usingInternalDoc .fontStyle{
+			font-size:17px;
+			line-height:1.5;
+		}
+		.usingExternalDoc .fontStyle{
+			font-size:initial;
+			font-family:sans-serif;
+		}
+		/* continue reading popup --- start */
+			#eContinueReadingWrapper{
+				font-family: arial;
+				direction:rtl;
+				background-color:#aec6e7;
+				height:135px;
+				width:632px;
+				position:fixed;
+				bottom:-135px;
+				left:50%;
+				margin-left:-316px;
+				transition:bottom 1s ease-in-out;
+			}
+			#eContinueReadingWrapper.on{
+				bottom:0;
+				margin-bottom:10px;
+			}
+			#eContinueReadingCaption{
+				font-size:36px;
+				font-weight:bold;
+				text-align:center;
+				margin-top:20px;
+				color:black;
+			}
+			#eContinueReadingControlPanel{
+				text-align:center;
+			}
+			#bContinueReadingConnect,#bContinueReadingReg{
+				width:236px;
+				line-height:36px;
+				text-align:center;
+				font-size:20px;
+				color:white;
+				display:inline-block;
+				cursor:pointer;
+			}
+			#bContinueReadingConnect{
+				background-color:#0e3668;
+				margin:20px 20px 20px 10px;
+			}
+			#bContinueReadingConnect:hover{	
+				background-color:#021c3d;
+			}
+			#bContinueReadingReg{
+				background-color:#ed7721;
+				margin:20px 10px 20px 20px;
+			}
+			#bContinueReadingReg:hover{
+				background-color:#e0501b;
+			}
+			
+		/* continue reading popup --- end */
+		@media print{
+			.hideInPrint{
+				display:none;
+			}
+		}
+		/* helper classes - start */
+			.hideMe{
+				display:none;
+			}
+		/* helper classes - end */
+	</style>
+	
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script>
+	var oFilesManager = new function(){
+		function chkIfFlExists(sFlNm){
+			var oData={nm:sFlNm},bRslt;
+			$.ajax({url:"chkIfFlExistsNew.asp",
+					method:"post",
+					async:false,
+					data:oData,
+					error:function(oErr,sErr){
+						alert ("err in checking if file exists. err details are - "+sErr);
+					},
+					success:function(sData){
+						bRslt= sData=="1" ? true : false;
+					}
+				});
+			return bRslt;
+		}
+		function createItmFl(sItmNm,sPgData){
+			var oData = {itmNm:sItmNm,pgData:sPgData},bRslt=false;
+			$.ajax({url:"createItmFlNew.asp",
+					method:"post",
+					async:false,
+					data:oData,
+					error:function(oErr,sErr1,sErr2){
+						alert ("err in creating the file. err1 - "+sErr1+" *** "+sErr2);
+					},
+					success:function(sData){
+						bRslt=true;
+					}
+				});
+			return bRslt;
+		}
+		this.convertToValidFlNmComponent = function (sNm){
+			var re1 = /[\s()[\]_{}?,\-/]+/ig,re2 = /["]+|^[\-]+|[\-]+$/ig;
+			sNm=sNm.replace(re1,"-");
+			sNm=sNm.replace(re2,"");
+			return sNm
+		}
+		this.generateItmFlNm = function (sFlNm,sPgData){
+			var bFlExists=chkIfFlExists(sFlNm);
+			if (!bFlExists){
+				createItmFl(sFlNm,sPgData);
+			}
+			return sFlNm;
+		}
+	}
+</script>
+
+</head>
+
+<body class="usingExternalDoc">
+	<div id="docContentWrapper">
+		<div style="font-family:david;font-size:12px;text-align:center;">www.lawdata.co.il - דטה חוק ומשפט</div>
+		<div id="eDocNmWrapper" >
+			<span id="docNm" class="">א 46416-10/21   אירנה עזרא נ' הפניקס חברה לביטוח בע"מ</span>
+		</div>
+		<div oncopy="parent.copyToClipBoard(event)" class="fontStyle">
+		<HTML xmlns="http://www.w3.org/TR/REC-html40" xmlns:v = "urn:schemas-microsoft-com:vml" xmlns:o = "urn:schemas-microsoft-com:office:office" xmlns:w = "urn:schemas-microsoft-com:office:word" xmlns:m = "http://schemas.microsoft.com/office/2004/12/omml" xmlns:ns0 = "http://schemas.microsoft.com/InformationBridge/2004" xmlns:ns1 = "NGCS.MergeFields.Schema" xmlns:ns2 = "urn:schemas-microsoft-com:office:smarttags"><HEAD>
+<META content="text/html; charset=windows-1255" http-equiv=Content-Type>
+<META name=ProgId content=Word.Document>
+<META name=Generator content="Microsoft Word 15">
+<META name=Originator content="Microsoft Word 15">
+<STYLE>
+v\:* {behavior:;}
+o\:* {behavior:;}
+w\:* {behavior:;}
+.shape {behavior:;}
+</STYLE>
+
+<STYLE>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-536869121 1107305727 33554432 0 415 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-536858881 -1073732485 9 0 511 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520081665 -1073717157 41 0 66047 0;}
+@font-face
+	{font-family:arial;
+	panose-1:2 14 5 2 6 4 1 1 1 1;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:2051 0 0 0 33 0;}
+@font-face
+	{font-family:Narkisim;
+	panose-1:2 14 5 2 5 1 1 1 1 1;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:2051 0 0 0 33 0;}
+@font-face
+	{font-family:FrankRuehl;
+	panose-1:2 14 5 3 6 1 1 1 1 1;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:2051 0 0 0 33 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	text-align:right;
+	mso-pagination:widow-orphan;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:arial;
+	mso-no-proof:yes;}
+h4
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"כותרת 4 תו";
+	mso-style-next:רגיל;
+	margin-top:0cm;
+	margin-right:288.0pt;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	text-align:right;
+	text-indent:36.0pt;
+	mso-pagination:widow-orphan;
+	kkk:avoid;
+	mso-outline-level:4;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-bidi-font-family:Narkisim;
+	mso-no-proof:yes;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-link:"טקסט הערה תו";
+	margin:0cm;
+	text-align:right;
+	mso-pagination:widow-orphan;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-link:"כותרת עליונה תו";
+	margin:0cm;
+	text-align:right;
+	mso-pagination:widow-orphan;
+	tab-stops:center 207.65pt right 415.3pt;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:arial;
+	mso-no-proof:yes;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-link:"כותרת תחתונה תו";
+	margin:0cm;
+	text-align:right;
+	mso-pagination:widow-orphan;
+	tab-stops:center 207.65pt right 415.3pt;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:arial;
+	mso-no-proof:yes;}
+span.MsoCommentReference
+	{mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-ansi-font-size:8.0pt;}
+span.MsoLineNumber
+	{mso-style-priority:99;
+	mso-style-unhide:no;
+	font-family:"Times New Roman",serif;
+	mso-bidi-font-family:"Times New Roman";}
+span.MsoPageNumber
+	{mso-style-priority:99;
+	mso-style-unhide:no;
+	font-family:"Times New Roman",serif;
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-link:"טקסט בלונים תו";
+	margin:0cm;
+	text-align:right;
+	mso-pagination:widow-orphan;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:8.0pt;
+	font-family:"Tahoma",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-no-proof:yes;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	margin-top:0cm;
+	margin-right:36.0pt;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	text-align:right;
+	line-height:106%;
+	mso-pagination:widow-orphan;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Arial;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:36.0pt;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	mso-add-space:auto;
+	text-align:right;
+	line-height:106%;
+	mso-pagination:widow-orphan;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Arial;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:36.0pt;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	mso-add-space:auto;
+	text-align:right;
+	line-height:106%;
+	mso-pagination:widow-orphan;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Arial;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{mso-style-priority:34;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-type:export-only;
+	margin-top:0cm;
+	margin-right:36.0pt;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	mso-add-space:auto;
+	text-align:right;
+	line-height:106%;
+	mso-pagination:widow-orphan;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:Arial;}
+span.4
+	{mso-style-name:"כותרת 4 תו";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"כותרת 4";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:Arial;
+	mso-bidi-theme-font:minor-bidi;
+	font-weight:bold;
+	mso-no-proof:yes;}
+span.a
+	{mso-style-name:"כותרת עליונה תו";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"כותרת עליונה";
+	mso-ansi-font-size:12.0pt;
+	mso-no-proof:yes;}
+span.a0
+	{mso-style-name:"כותרת תחתונה תו";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"כותרת תחתונה";
+	mso-ansi-font-size:12.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"David",sans-serif;
+	mso-bidi-font-family:arial;
+	mso-no-proof:yes;}
+p.a1, li.a1, div.a1
+	{mso-style-name:סעיפים;
+	mso-style-unhide:no;
+	margin:0cm;
+	text-align:justify;
+	line-height:150%;
+	mso-pagination:widow-orphan;
+	tab-stops:1.0cm 2.0cm 3.0cm 4.0cm 5.0cm 6.0cm 7.0cm;
+	direction:rtl;
+	unicode-bidi:embed;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:arial;}
+span.a2
+	{mso-style-name:"טקסט הערה תו";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"טקסט הערה";
+	font-family:"David",sans-serif;
+	mso-bidi-font-family:arial;
+	mso-no-proof:yes;}
+span.a3
+	{mso-style-name:"טקסט בלונים תו";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"טקסט בלונים";
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Tahoma",sans-serif;
+	mso-ascii-font-family:Tahoma;
+	mso-hansi-font-family:Tahoma;
+	mso-bidi-font-family:Tahoma;
+	mso-no-proof:yes;}
+.MsoPapDefault
+	{mso-style-type:export-only;}
+ /* Page Definitions */
+ @page
+	{mso-footnote-separator: fs;
+	mso-footnote-continuation-separator: fcs;
+	mso-endnote-separator: es;
+	mso-endnote-continuation-separator: ecs;}
+pseudoElm
+	{size:21.0cm 842.0pt;
+	margin:36.0pt 3.0cm 2.0cm 3.0cm;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.85pt;
+	mso-line-numbers-count-by:1;
+	mso-even-header: eh1;
+	mso-header: h1;
+	mso-even-footer: ef1;
+	mso-footer: f1;
+	mso-first-header: fh1;
+	mso-first-footer: ff1;
+	mso-paper-source:0;
+	mso-gutter-direction:rtl;}
+div.WordSection1
+	{}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:2059818639;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;
+	mso-bidi-font-family:"Times New Roman";}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</STYLE>
+</HEAD>
+<BODY lang=EN-US style="WORD-WRAP: break-word; tab-interval: 36.0pt">
+<DIV class=WordSection1>
+<P class=MsoHeader style="TEXT-ALIGN: center; mso-pagination: widow-orphan no-line-numbers" dir=rtl align=center><SPAN style="FONT-SIZE: 14pt; mso-bidi-font-family: FrankRuehl" dir=ltr><v:shapetype id=_x0000_t75 stroked="f" filled="f" path="m@4@5l@4@11@9@11@9@5xe" o:preferrelative="t" o:spt="75" coordsize="21600,21600"><v:stroke joinstyle="miter"></v:stroke><v:formulas><v:f eqn="if lineDrawn pixelLineWidth 0"></v:f><v:f eqn="sum @0 1 0"></v:f><v:f eqn="sum 0 0 @1"></v:f><v:f eqn="prod @2 1 2"></v:f><v:f eqn="prod @3 21600 pixelWidth"></v:f><v:f eqn="prod @3 21600 pixelHeight"></v:f><v:f eqn="sum @0 0 1"></v:f><v:f eqn="prod @6 1 2"></v:f><v:f eqn="prod @7 21600 pixelWidth"></v:f><v:f eqn="sum @8 21600 0"></v:f><v:f eqn="prod @7 21600 pixelHeight"></v:f><v:f eqn="sum @10 21600 0"></v:f></v:formulas><v:path o:connecttype="rect" gradientshapeok="t" o:extrusionok="f"></v:path><o:lock aspectratio="t" v:ext="edit"></o:lock></v:shapetype><v:shape id=_x0000_i1025 style="HEIGHT: 36.75pt; WIDTH: 29.25pt; VISIBILITY: visible" type="#_x0000_t75" alt="ישראל - המנורה - 2"></v:shape></SPAN><SPAN lang=HE style='FONT-SIZE: 14pt; FONT-FAMILY: "FrankRuehl",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'><o:p></o:p></SPAN></P>
+<DIV align=center>
+<TABLE class=MsoNormalTable style="BORDER-COLLAPSE: collapse; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-table-dir: bidi" dir=rtl cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR style="HEIGHT: 35.2pt; mso-yfti-irow: 0; mso-yfti-firstrow: yes; mso-height-rule: exactly">
+<TD style="HEIGHT: 35.2pt; WIDTH: 436.05pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt; mso-height-rule: exactly" vAlign=top width=581 colSpan=2>
+<P class=MsoHeader style="TEXT-ALIGN: center; mso-pagination: widow-orphan no-line-numbers" dir=rtl align=center><B><SPAN lang=HE style='FONT-FAMILY: "Tahoma",sans-serif; COLOR: navy; mso-no-proof: no'><a href="https://www.lawdata.co.il/scv-ערכאה-בית-משפט-שלום.asp" target="arkaaPsakRsltsPg">בית משפט השלום</a> בקריית גת </SPAN></B><B><SPAN style='FONT-FAMILY: "Tahoma",sans-serif; COLOR: navy; mso-no-proof: no' dir=ltr><o:p></o:p></SPAN></B></P>
+<P class=MsoHeader style="TEXT-ALIGN: center; mso-pagination: widow-orphan no-line-numbers" dir=rtl align=center><SPAN lang=HE style='FONT-FAMILY: "Tahoma",sans-serif; COLOR: navy; mso-no-proof: no'><o:p>&nbsp;</o:p></SPAN></P></TD></TR>
+<TR style="HEIGHT: 16.85pt; mso-yfti-irow: 1">
+<TD style="HEIGHT: 16.85pt; WIDTH: 252.35pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=336>
+<P class=MsoNormal style="mso-pagination: widow-orphan no-line-numbers" dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'><o:p>&nbsp;</o:p></SPAN></B></P></TD>
+<TD style="HEIGHT: 16.85pt; WIDTH: 183.7pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=245>
+<P class=MsoHeader style="TEXT-ALIGN: left; mso-pagination: widow-orphan no-line-numbers" dir=rtl align=right><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'><o:p>&nbsp;</o:p></SPAN></B></P></TD></TR>
+<TR style="HEIGHT: 16.85pt; mso-yfti-irow: 2; mso-yfti-lastrow: yes">
+<TD style="HEIGHT: 16.85pt; WIDTH: 436.05pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=581 colSpan=2>
+<P class=MsoNormal style="mso-pagination: widow-orphan no-line-numbers" dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'>ת"א 46416-10-21 עזרא נ' <SPAN onclick=activateKeyWrd(this) class=ldZad2><a href="https://www.lawdata.co.il/scv-צד-הפניקס-חברה-לביטוח-בע%22מ.asp" target="zadPsakRsltsPg">הפניקס חברה לביטוח בע"מ</a></SPAN></SPAN></B></P>
+<P class=MsoNormal style="mso-pagination: widow-orphan no-line-numbers" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'><o:p>&nbsp;</o:p></SPAN></P></TD></TR></TBODY></TABLE></DIV>
+<P class=MsoHeader style="mso-pagination: widow-orphan no-line-numbers" dir=rtl><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'><SPAN dir=rtl></SPAN><SPAN style="mso-spacerun: yes">&nbsp;</SPAN><o:p></o:p></SPAN></P>
+<P class=MsoNormal style="mso-pagination: widow-orphan no-line-numbers" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'><o:p>&nbsp;</o:p></SPAN></P>
+<DIV align=center>
+<TABLE class=MsoNormalTable style="WIDTH: 441pt; BORDER-COLLAPSE: collapse; mso-yfti-tbllook: 480; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-table-dir: bidi" dir=rtl cellSpacing=0 cellPadding=0 width=588 border=0>
+<TBODY>
+<TR style="mso-yfti-irow: 0; mso-yfti-firstrow: yes">
+<TD style="WIDTH: 37.15pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=50>
+<P class=MsoNormal style="TEXT-ALIGN: justify" dir=rtl><B><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'>בפני </SPAN></B><B><SPAN style='FONT-FAMILY: "Arial",sans-serif; mso-bidi-font-family:arial' dir=ltr><o:p></o:p></SPAN></B></P></TD>
+<TD style="WIDTH: 403.85pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=538 colSpan=2>
+<P class=MsoNormal dir=rtl><B><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'>כב' השופט<SPAN style="mso-spacerun: yes">&nbsp; </SPAN><SPAN onclick=activateKeyWrd(this) class=ldShofet><a href="https://www.lawdata.co.il/scv-שופט-אבישי-זבולון.asp" target="shofetPsakRsltsPg">אבישי זבולון</a></SPAN></SPAN></B></P>
+<P class=MsoNormal dir=rtl><SPAN style='FONT-SIZE: 14pt; FONT-FAMILY: "Arial",sans-serif; BACKGROUND: yellow; mso-bidi-font-family: FrankRuehl; mso-highlight: yellow' dir=ltr><o:p>&nbsp;</o:p></SPAN></P></TD></TR>
+<TR style="mso-yfti-irow: 1">
+<TD style="WIDTH: 162.45pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=217 colSpan=2>
+<P class=MsoNormal style="unicode-bidi: embed; DIRECTION: ltr; TEXT-ALIGN: right" dir=ltr align=right><B><SPAN style='FONT-SIZE: 13pt; FONT-FAMILY: "Arial",sans-serif; mso-bidi-font-family:arial; mso-no-proof: no'><o:p>&nbsp;</o:p></SPAN></B></P>
+<P class=MsoNormal style="unicode-bidi: embed; DIRECTION: ltr; TEXT-ALIGN: right" dir=ltr align=right><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial' dir=rtl>תובעת<o:p></o:p></SPAN></B></P></TD>
+<TD style="WIDTH: 278.55pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=371>
+<P class=MsoNormal dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></B></P>
+<P class=MsoNormal dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><SPAN onclick=activateKeyWrd(this) class=ldZad1><a href="https://www.lawdata.co.il/scv-צד-אירנה-עזרא.asp" target="zadPsakRsltsPg">אירנה עזרא</a></SPAN><BR></SPAN></B><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'>באמצעות ב"כ <SPAN onclick=activateKeyWrd(this) class=ldOrech1>עו"ד <a href="https://www.lawdata.co.il/scv-עורךדין-צו-פרץ.asp" target="orechdinPsakRsltsPg">צו פרץ</a></SPAN></SPAN></P></TD></TR>
+<TR style="mso-yfti-irow: 2">
+<TD style="WIDTH: 441pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=588 colSpan=3>
+<P class=MsoNormal dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></B></P>
+<P class=MsoNormal style="TEXT-ALIGN: center" dir=rtl align=center><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'>נגד<o:p></o:p></SPAN></B></P>
+<P class=MsoNormal dir=rtl><B><SPAN style='FONT-SIZE: 13pt; FONT-FAMILY: "Arial",sans-serif; mso-bidi-font-family:arial; mso-no-proof: no' dir=ltr><o:p>&nbsp;</o:p></SPAN></B></P></TD></TR>
+<TR style="mso-yfti-irow: 3; mso-yfti-lastrow: yes">
+<TD style="WIDTH: 162.45pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=217 colSpan=2>
+<P class=MsoNormal dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></B></P>
+<P class=MsoNormal dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'>נתבעת</SPAN></B><B><SPAN style='FONT-SIZE: 13pt; FONT-FAMILY: "Arial",sans-serif; mso-bidi-font-family:arial; mso-no-proof: no' dir=ltr><o:p></o:p></SPAN></B></P></TD>
+<TD style="WIDTH: 278.55pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=371>
+<P class=MsoNormal dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></B></P>
+<P class=MsoNormal dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 13pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><SPAN onclick=activateKeyWrd(this) class=ldZad2><a href="https://www.lawdata.co.il/scv-צד-הפניקס-חברה-לביטוח-בע%22מ.asp" target="zadPsakRsltsPg">הפניקס חברה לביטוח בע"מ</a></SPAN><BR></SPAN></B><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'>באמצעות ב"כ <SPAN onclick=activateKeyWrd(this) class=ldOrech2>עו"ד <a href="https://www.lawdata.co.il/scv-עורךדין-תהל-כץ.asp" target="orechdinPsakRsltsPg">תהל כץ</a></SPAN></SPAN></P></TD></TR>
+<TR>
+<TD style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none" width=50></TD>
+<TD style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none" width=167></TD>
+<TD style="BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none" width=371></TD></TR></TBODY></TABLE></DIV>
+<P class=MsoNormal style="mso-pagination: widow-orphan no-line-numbers" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: "Times New Roman"; mso-hansi-font-family: "Times New Roman"'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="mso-pagination: widow-orphan no-line-numbers" dir=rtl><SPAN dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<DIV align=center>
+<TABLE class=MsoNormalTable style="WIDTH: 441pt; BORDER-COLLAPSE: collapse; mso-yfti-tbllook: 480; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt; mso-table-dir: bidi" dir=rtl cellSpacing=0 cellPadding=0 width=588 border=0>
+<TBODY>
+<TR style="mso-yfti-irow: 0; mso-yfti-firstrow: yes; mso-yfti-lastrow: yes">
+<TD style="WIDTH: 441pt; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5.4pt; PADDING-RIGHT: 5.4pt" vAlign=top width=588>
+<P class=MsoNormal style="unicode-bidi: embed; DIRECTION: ltr; TEXT-ALIGN: center" dir=ltr align=center><B><U><SPAN lang=HE style='FONT-SIZE: 14pt; FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial' dir=rtl>פסק דין</SPAN></U></B><B><U><SPAN style='FONT-SIZE: 14pt; FONT-FAMILY: "Arial",sans-serif; mso-bidi-font-family:arial; mso-no-proof: no'><o:p></o:p></SPAN></U></B></P></TD></TR></TBODY></TABLE></DIV>
+<P class=MsoNormal style="LINE-HEIGHT: 150%" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraph style="LINE-HEIGHT: 150%; TEXT-INDENT: -18pt; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; LINE-HEIGHT: 150%; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">1.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; LINE-HEIGHT: 150%'>לפני תביעת התובעת, ילידת 2/2/89, לפיצוי בגין נזקי גוף שנגרמו לה לטענתה בתאונת דרכים מיום 24/11/19.<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="BACKGROUND: white; TEXT-ALIGN: justify; LINE-HEIGHT: 150%; MARGIN-RIGHT: 32.15pt" dir=rtl><B><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; COLOR: black; mso-no-proof: no'>העובדות</SPAN></B><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; COLOR: black; mso-no-proof: no'><o:p></o:p></SPAN></P>
+<P class=MsoNormal style="BACKGROUND: white; TEXT-ALIGN: justify; LINE-HEIGHT: 18pt; MARGIN-RIGHT: 32.15pt" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; COLOR: black; mso-no-proof: no'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpFirst style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">2.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת, עבדה בחברת "אם גי אס מן פאוור"<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>הנותנת שירות לחברת אינטל, במחלקת הדואר.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">3.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>על פי עובדות כתב התביעה, התובעת היתה מעורבת בתאונת דרכים, עת נהגה ברכב בקריית גת, בדרכה חזרה מהעבודה בה עבדה ולפתע הגיח מאחור רכב צד ג' אשר פגע בה והיא נפגעה בחלקי גופה השונים בעיקר בעמוד שדרה, גב תחתון וצוואר.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">4.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התאונה הוכרה במוסד לביטוח לאומי כתאונת עבודה ונקבעה לתובעת נכות משוקללת בשיעור <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>14.27% אשר מהווה נכות על פי דין.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">5.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>הנתבעת לא הכחישה את חבותה ועל כן נשמעו ראיות הצדדים לעניין הנזק בלבד.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">6.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>מטעם התובעת העידו התובעת ; גב' כרמית יהודה מנהלת העבודה של התובעת ודקל עזרא, בעלה של התובעת. מטעם הנתבעת לא העידו עדים.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">7.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>הצדדים הגישו סיכומיהם בכתב.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p>&nbsp;</o:p></SPAN></B></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p>&nbsp;</o:p></SPAN></B></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><B><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>דיון<o:p></o:p></SPAN></B></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>נכות רפואית<o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">8.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>הוועדה הרפואית של הערר מיום 6/11/22, קבעה לתובעת נכויות כמפורט-</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>א.5% בגין הגבלה קלה בתנועות עמ"ש מותני לפי ס' 37(7)א לתקנות המל"ל.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ב 5% בגין הגבלה קלה בתנועות עמ"ש צווארי לפני ס' 37(5)א לתקנות המל"ל.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ג. 5% בגין כאבים בשריר ודלקת בשריר כולל פיברומיאלגיה ללא השפעה על כושר הפעולה<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>לפי ס' 35(1)(א) לתקנות המל"ל.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>סה"כ 14.27% נכות צמיתה, אשר מהווה את נכותה הרפואית של התובעת.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>לא הופעלה תקנה 15 . <o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p><SPAN style="TEXT-DECORATION: none">&nbsp;</SPAN></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>נכות תפקודית</SPAN></U><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p><SPAN style="TEXT-DECORATION: none">&nbsp;</SPAN></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">9.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת טענה בסיכומיה כי אין חולק שעבודתה במקום העבודה הקודם היתה עבודה פיזית ובעקבות התאונה נכפה עליה למצוא מקום עבודה אחר עם עבודה קלה יותר, דבר שאילץ אותה לוותר על<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>עבודתה באינטל, חברה גדולה בעלה זרועות ומחלקות רבות באתרים השונים בארץ, בו היו לה אפשרויות קידום רבות יותר ואופק מקצועי עתידי בהינתן כי היא אקדמאית בעלת תואר ראשון ועל כן טענה כי יש לקבוע לה נכות תפקודית משמעותית. </SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">10.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>מנגד, טענה הנתבעת כי אין משמעות תפקודית לנכויות של התובעת ולראייה הוועדה הרפואית לעררים לא הפעילה את תקנה 15 שכן אין ירידה בהכנסות התובעת ולחילופין יש לקבוע לתובעת נכות תפקודית בשיעור <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>5% לכל היותר.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">11.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת הצהירה בתצהיר עדותה הראשית כי עובר לתאונה היא עבדה בחברת "מאן פאוור", כנציגת שירות במפעל אינטל בקריית גת, תפקיד שכלל מיון של חבילות דואר וסידור מדפים, עבודה פיסית במהותה ובשל גודלו של המפעל המעסיק אלפי עובדים, היקף העבודה שלה היה כגודל של סניף דואר מרכזי בעיר.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">12.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>כן הצהירה כי היא נפגעה בעיקר בעמוד השידרה ובעקבות התאונה היו לה כאבים רבים והגבלה בתנועות הצוואר, אשר הלכה והחמירה ככל שחלף הזמן ומאדם בריא היא הפכה לאדם כאוב והרגישה כאבים בכל הגוף ותחושה קשה של עייפות ותשישות שליוותה אותה במהלך יום העבודה ואף גרמה לה להירדם מול אנשים.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">13.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת הוסיפה והצהירה כי נדרשה לפנות לרופאים רבים, בין היתר, אורתופד ומרפאות כאב ובסופו של יום נקבע כי היא סובלת מפיברומיאלגיה. לטענתה מצבה התפקודי החמיר מאוד ולאחר כ-16 יום חזרה לעבודה שכן חששה למקום עבודתה. ואולם הכאבים החזקים הקשו עליה מאוד להמשיך לעבוד והיא נזקקה להפסקות מ<span style="BACKGROUND-COLOR:orange;cursor:pointer;" title="לחיצה למופע הבא" class="markedStr">רובות</span> ועזרה מחברים לעבודה שביצעו את העבודה במקומה. כן אף נאלצה לשהות בחופשת מחלה מפעם לפעם אך בשל מסירותה לעבודה עובר לתאונה, נמנעו מלפטר אותה.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">14.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת הצהירה כי בחודש אפריל 2021 נדרשה לשמירת הריון בשל מצבה הפיזי והכאבים הקשים מהם סבלה והחליטה כי לא תשוב לעבודה זו בתום חופשת הלידה. כך חזרה התובעת לזמן קצר בלבד ובחודש נובמבר 2021 החלה לעבוד בחברת "סמי נג'מי הנדסה ופרוייקטים" בתפקיד אדמיניסטרטיבי <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>וניהול משרד. אף במקום העבודה החדש, נאלצה להיעדר לחופשות מחלה ויזמה הפסקות גדולות יותר בשל הקושי לשבת ממושכות מול מסך מחשב.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">15.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>בחקירתה הנגדית חזרה התובעת על האמור בתצהירה והעידה כי לא נעדרה למשך זמן רב לאחר התאונה, בשל העובדה כי כחודש וחצי לפני התאונה היא חזרה<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>מחופשת לידה ועל כן לא הרשתה לעצמה להיעדר ממושכות לימים שלמים. ואולם היתה מגיעה לעבודה ועובדת מספר שעות בלבד ולא יום מלא ועל כן זה לא בא לידי ביטוי בימי המחלה.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">16.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת זימנה לעדות את המנהלת שלה במקום העבודה החדש, במועד התאונה, איתה עבדה מחודש נובמבר 2021 ועד יולי 2022,. האחרונה העידה כי לא היתה להן היכרות מוקדמת על אף שהן מתגוררות באותו מושב. העדה הצהירה בעדותה כי התובעת היתה עובדת חרוצה וטובה שהשתדלה מאוד לעשות את עבודתה על הצד הטוב ביותר ואולם בשל כאבים רבים שהיו לה היא נאלצה מפעם לפעם לסיים את יום העבודה מוקדם ועל כן היו מפחיתים בשכרה. <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>ואולם לא ידעה להסביר את הרכב השכר ומה היו הירידות בשכר, שכן אין זה מתפקידה.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">17.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>בחקירתה החוזרת, נשאלה העדה האם היו אליה פניות<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>מההנהלה בקשר לעבודת התובעת והעידה כי פנו אליה לגבי הריכוז של התובעת והעובדה כי לא היתה תמיד בעמדת הקבלה, היות ולא יכלה לשבת לזמן ממושך. לדבריה היא לקחה על עצמה את תפקוד התובעת ולשאלה מדוע היא זימנה אותה לעדות ולא את המנהלת החדשה איתה היא עובדת, השיבה כי אינה יודעת.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">18.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>מעדותה של התובעת עולה כי אין מחלוקת כי שכרה הושבח, אך עיקר טענתה לירידה בפוטנציאל קידום במקום העבודה החדש, בהינתן כי הוא מקום קטן יותר לעומת אינטל, מקום עבודה נרחב, בו הכירה התובעת אנשים רבים והיה לפניה אופק התקדמות רב יותר.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">19.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>מצאתי את עדותה של מנהלת הקודמת של התובעת ועדותה שלה תובעת מהימנות באשר למגבלות התובעת במהלך יום העבודה והעובדה כי נדרשה להפסקות גדולות יותר ולהיעדרויות מפעם לפעם, אף אם למספר שעות ביום, בשל הקושי לשבת זמן ממושך מול מחשב ולהתרכז. כן יכול וקידומה המקצועי לא יהא זהה לזה שיכול היה להיות במקום העבודה בו אפשרויות גדולות יותר ואולם לא ניתן לקבוע ממצאים באשר לכך ללא ראיות ממשיות.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpLast style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">20.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>לאור נכותה הרפואית מחד ומנגד קביעת וועדת המל"ל על הגבלה קלה בתנועות עמ"ש שדרה ועמ"ש מותני וכן אי השפעה על כושר הפעולה הכללי וללא הגבלה בתנועות ביחס לנכותה בתחום הכאב, אשר נקבע במל"ל לאחר שערעור התובעת נדחה, מצאתי לקבוע את נכותה התפקודית של התובעת בשיעור 10%.<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="BACKGROUND: white; LINE-HEIGHT: 18pt" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; COLOR: black; mso-no-proof: no'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpFirst style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>בסיס השכר</SPAN></U><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">21.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת מבקשת לקבוע את בסיס שכרה בשיעור 8,025 ₪ ומנגד הנתבעת טוענת לבסיס שכר לעבר בשיעור 6,212 ₪ בהתאם לאישור המל"ל על דמי פגיעה ששולמו לתובעת ובסיס שכרה לשנת 2023 עומד על 8,025 ₪. <o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">22.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>אין חולק כי שכרה של התובעת הושבח מיום התאונה ועד היום כשבמועד התאונה היא השתכרה כ 6,200 ₪ וכיום היא משתכרת כ- 8,000 ₪ ועל כן מצאתי להעמיד את בסיס שכרה של התובעת על סך 8,000 ₪.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN dir=rtl></SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><SPAN dir=rtl></SPAN><SPAN style="mso-spacerun: yes">&nbsp;</SPAN></SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>כאב וסבל</SPAN></U><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">23.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>בהתאם לגיל התובעת ולכות בשיעור 14.27% יעמוד הפיצוי על סך <B>29,560 ₪.</B></SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>הפסדי שכר לעבר</SPAN></U><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">24.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת עתרה לפיצוי בסך <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>20,000 ₪ בהינתן כי נאלצה להשתמש בימי מחלה רבים בעקבות התאונה ובשל מוסר העבודה הגבוה שלה נמנעה מהיעדרויות ממושכות ויש מקום לפצותה על כך.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">25.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>מנגד, טענה הנתבעת כי אין מקום לפצות את התובעת בגין הפסדי העבר שכן לא הרימה את הנטל להוכיח כי נגרמו לה הפסדים בפועל.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">26.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ככל שמדובר בהפסדי עבר מדובר בנזק מיוחד הטעון פירוט אשר יש להוכיחו במסמכים ובראיות (<A style="COLOR: blue" href="https://www.lawdata.co.il/lawdata/OpenDocFromLink.asp?Tik=810&amp;Tik_Ref=81&amp;Tik_Type=6&amp;zad=לוי נ$$$&amp;T=8&amp;FromWord=0" target=Psak_261780>ע"א 810/81</A> לוי נ' מזרחי פ"ד לט( 1) 477), שהרי לפי טבעו ואופיו של הנזק - ניתן להביא נתונים מדויקים, ועל התובעת חלה החובה להביא נתונים אלה. עם זאת, בהתאם לפסיקה אין להכביד על תובעים גם בראש נזק מיוחד והפסיקה הכירה בפיצוי בראשי נזק אלה בדרך האומדנא, וכך כאשר מובאות ראיות של ממש לעניין עצם הפסד כושר השתכרות לעבר ניתן להעריך את הפסד השכר לעבר בדרך האומדנא (<A style="COLOR: blue" href="https://www.lawdata.co.il/lawdata/OpenDocFromLink.asp?Tik=448&amp;Tik_Ref=87&amp;Tik_Type=6&amp;zad=המרמן קבלן&amp;T=8&amp;FromWord=0" target=Psak_990578>ע"א 448/87</A> המרמן קבלן לבניין נ. חסן, פ"ד מג(3) 810) דרך זו של אומדן גלובלי לגבי הפסד השתכרות בעבר נתקבלה בפסיקה, במקרים שאין בהם כדי לקפח את בעלי הדין (<A style="COLOR: blue" href="https://www.lawdata.co.il/lawdata/OpenDocFromLink.asp?Tik=348&amp;Tik_Ref=78&amp;Tik_Type=6&amp;zad=יפה נ&amp;T=8&amp;FromWord=0" target=Psak_1328034>ע"א 348/78</A> יפה נ. טרם פ"ד לג (3) 659).<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">27.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>בנוגע לימי המחלה וחופשה שפדתה התובעת, נקבע בפסיקה כי ניזוק אשר עמדו לזכותו ימי מחלה, זכאי לפיצוי בגין הימים שנפדו בפגיעתו. ימי המחלה הינם בגדר זכות של התובעת, אשר ניצולה עקב התאונה, הביא לגריעה מהיקפה, באופן שאם תחלה התובעת שוב, יפחת מספר ימי המחלה שיעמדו לרשותה, ועל כך יש לפצותה.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpLast style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">28.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת נעדרה במשך 16 ימים לאחר התאונה ובהתאם לעדותה נאלצה להיעדר ימים נוספים גם לאחר חזרתה לעבודה, בשל הצורך לפנות לרופאים שונים ובשל כאבים במשך היום, אשר על כן מצאתי כי יש מקום לפצותה בגין הפסדי ימי המחלה בסכום גלובלי <B>בסך 5,000 ₪.</B><o:p></o:p></SPAN></P>
+<P class=MsoNormal style="BACKGROUND: white; LINE-HEIGHT: 18pt" dir=rtl><SPAN style='FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpFirst style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>הפסדי שכר לעתיד</SPAN></U><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">29.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת טוענת כי בהתאם לעדותה והעדים מטעמה הרי שיש לקבוע הפסדי שכרה בהתאם לנכות תפקודית של 15%, כנכותה הרפואית, זאת בהינתן כי מדובר בנכויות בתחום האורתופדיה והפיברומיאלגיה אשר מהוות נכויות משמעותיות מאוד ויש להביא בחשבון גם את העובדה כי התובעת בעלת תואר ראשון ושכרה כיום אינו משקף את יכולותיה האמיתיות.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">30.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>הנתבעת טוענת כי אין מקום לפצות את התובעת על הפסדי שכר לעתיד, שכן היא חזרה לעבודתה ואף השביחה את שכרה במקום העבודה החדש והתאונה לא גרמה לפגיעה תפקודית ולחילופין יש לקבוע פיצוי גלובלי בסך 5,000 ₪.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">31.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת ילידת 1989, כיום כבת 35, ולה<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>29 שנות עבודה עד לגיל פנסיה. <o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">32.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>מחד לתובעת נכות תפקודית העומדת על 10% בשל מגבלות אורתופדיות קלות וכאבים שונים בגוף, נכויות שאינן מן הגבוהות, עם זאת מהות עבודתה של התובעת, מרביתה בישיבה מול מחשב, בריכוז ובהתאם לעדותה אשר מצאתיה מהימנה, הרי שהיא מתקשה לבצעה ברצף בשל כאבים. בנוסף העובדה כי לתובעת אופק תעסוקתי בן <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>כ-29 שנים עד הגיעה לגיל פרישה ותוך שקילת הסיכון, ככל שיהא נמוך, כי תאלץ לעבוד פחות בשל מגבלתה כתוצאה מהתאונה, מצאתי לפסוק לתובעת פיצוי בשיעור 75% מהתחשיב אקטוארי בנכותה ובהתאם לשכרה עובר למתן פסק הדין.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpLast style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">33.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>לפיכך ובהתאם לבסיס שכר בסך 8,000 ₪, נכות תפקודית בשיעור <SPAN style="mso-spacerun: yes">&nbsp;</SPAN>10% ומקדם היוון המתאים, יעמוד סכום הפיצוי <B>בסך 139,343 ₪</B> שהם 75% מתחשיב אקטוארי (185,790 ₪) .</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoNormal style="BACKGROUND: white; LINE-HEIGHT: 18pt" dir=rtl><SPAN style='FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpFirst style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>פנסיה</SPAN></U><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">34.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>פיצוי בגין הפסדי פנסיה בסך <B>16,721 ₪.</B></SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>הוצאות רפואיות ונסיעה לעבר ולעתיד</SPAN></U><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">35.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת עותרת לפצוי בסך 10,000 ₪ בהתאם ל<span style="BACKGROUND-COLOR:yellow;cursor:pointer;" title="לחיצה למופע הבא" class="markedStr">נסיעות</span> המ<span style="BACKGROUND-COLOR:orange;cursor:pointer;" title="לחיצה למופע הבא" class="markedStr">רובות</span> לרופאים, זמן המתנה לטיפולים ואובדן שעות עבודה ובית. מנגד וטוענת הנתבעת כי לא הוצגו קבלות ואסמכתאות על הוצאות בפועל ועל כן אין מקום לפצות בגין ראש נזק זה.</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">36.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>בשים לב לטיפולים הרפואיים ולמעקב הרפואי אותו עברה התובעת בעקבות התאונה, ובשים לב להוצאות הכרוכות ב<span style="BACKGROUND-COLOR:yellow;cursor:pointer;" title="לחיצה למופע הבא" class="markedStr">נסיעות</span> לטיפולים, ובדיקות רפואיות, ולאפשרות כי בעתיד תזדקק לעוד טיפולים, מצאתי כי יהא זה סביר לקבוע את סכום הפיצוי בגין ראש נזק זה, לעבר ולעתיד, בסכום גלובאלי בסך <B>5,000 ₪.</B></SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>עזרה לעבר ולעתיד<o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">37.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת עותרת לפצוי בסך- 20,000 ₪ בגין עזרה לה נזקקה בעקבות התאונה, בהתאם לעדותה ולעדות בעלה לענין העזרה לה נזקקת התובעת. </SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>מנגד, טענה הנתבעת כי התובעת לא הוכיחה כי נזקקה לעזרה בשכר וכן לא לעזרה מעבר לעזרת קרובי משפחה, אשר ממילא נוהגים לסייע בעיתות משבר ולפיכך בהתאם לפסיקה אין מקום לפיצוי על עזרת קרובי משפחה.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">38.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>התובעת הצהירה בעדותה כי נעזרה בחמותה וחמה ובני משפחה נוספים, אשר התגוררו בסמוך אליה במועד התאונה, בהוצאת ילדיה מהגן שכן התקשתה להרימם. כן זימנה לעדות את בעלה, אשר הצהיר כי לאחר התאונה חייו השתנו והוא נדרש לצאת מוקדם מהעבודה על מנת לסייע לאשתו לקלח את הילדים ולהכין להם לאכול ולקחת אותם למסגרות הלימודיות והדבר גרע ממנו שעות עבודה.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">39.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>אין חולק כי התובעת לא הציגה כל אסמכתא על עזרה בשכר, יחד עם זאת, מצאתי לקבל את העדויות מטעמה באשר לצורך בסיוע מוגבר של בני משפחתה לאחר התאונה ועל כן מצאתי כי יהא זה סביר לקבוע פיצוי גלובאלי בסך- <B>5,000 ₪.</B><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p><SPAN style="TEXT-DECORATION: none">&nbsp;</SPAN></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>סוף דבר<o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p><SPAN style="TEXT-DECORATION: none">&nbsp;</SPAN></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">40.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>הנתבעת תשלם לתובעת את הסכומים הבאים:<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>א. כאב וסבל<SPAN style="mso-tab-count: 4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>29,560 ₪<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ב. הפסדי שכר לעבר<SPAN style="mso-tab-count: 3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>5,000 ₪</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ג. הפסדי שכר לעתיד<SPAN style="mso-tab-count: 3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>139,343 ₪</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ד. פנסיה<SPAN style="mso-tab-count: 4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>16,721 ₪</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ה. הוצאות רפואיות ונסיעה לעבר ולעתיד<SPAN style="mso-tab-count: 1">&nbsp; </SPAN>5,000 ₪</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ו. עזרה לעבר ולעתיד<SPAN style="mso-tab-count: 3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>5,000 ₪</SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><SPAN dir=rtl></SPAN>______________________________________<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%'>סה"כ<SPAN style="mso-tab-count: 5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>200,624 ₪ </SPAN><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; LINE-HEIGHT: 106%' dir=ltr><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="BACKGROUND: white; MARGIN: 0cm 32.15pt 0cm 0cm; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><U><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>ניכויי מלל</SPAN></U><U><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black' dir=ltr><o:p></o:p></SPAN></U></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">41.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>כאמור בסיכומי הנתבעת, מהסכום האמור ינוכו תגמולי המל"ל בסך- 39,840 ₪ ודמי פגיעה בסך 2,485 ₪ , סך הניכויים 42,324 ₪, כך שיתרת סכום הפיצוי תעמוד על סך <B>158,300 ₪.</B><o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; TEXT-INDENT: -18pt; mso-add-space: auto; mso-list: l0 level1 lfo1" dir=rtl><SPAN style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black; mso-fareast-font-family:arial'><SPAN style="mso-list: Ignore">42.<SPAN style='FONT: 7pt "Times New Roman"'>&nbsp; </SPAN></SPAN></SPAN><SPAN dir=rtl></SPAN><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>כמו כן תשלם הנתבעת לתובע את הוצאות המשפט , בתוספת הפרשי הצמדה וריבית כחוק ממועד התשלום וכן שכ"ט עו"ד בשיעור 15.34% .<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>זכות ערעור כדין.<o:p></o:p></SPAN></P>
+<P class=MsoListParagraphCxSpMiddle style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoListParagraphCxSpLast style="MARGIN-BOTTOM: 0cm; BACKGROUND: white; LINE-HEIGHT: 18pt; mso-add-space: auto" dir=rtl><SPAN lang=HE style='FONT-SIZE: 12pt; FONT-FAMILY: "David",sans-serif; COLOR: black'>המזכירות תשלח עותק פסק הדין בדואר רשום לב"כ הצדדים.<BR style="mso-special-character: line-break"><BR style="mso-special-character: line-break"></SPAN><SPAN lang=HE style='FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></SPAN></P>
+<P class=MsoNormal style="TEXT-ALIGN: justify; LINE-HEIGHT: 150%" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><SPAN style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>ניתנה היום,<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>ו' ניסן תשפ"ד, <a href="https://www.lawdata.co.il/scv-תאריך-04-14-2024.asp" target="fromDtPsakRsltsPg">14 אפריל 2024</a>, בהעדר הצדדים.<o:p></o:p></SPAN></P>
+<P class=MsoNormal style="TEXT-ALIGN: justify; LINE-HEIGHT: 150%" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="TEXT-ALIGN: center; LINE-HEIGHT: 150%; MARGIN-RIGHT: 180pt; TEXT-INDENT: 36pt" dir=rtl align=center><SPAN dir=ltr><v:shape id=Picture_x0020_1 style="HEIGHT: 43.5pt; WIDTH: 91.5pt; VISIBILITY: visible" type="#_x0000_t75" o:spid="_x0000_i1026"></v:shape></SPAN></P>
+<P class=MsoNormal style="TEXT-ALIGN: center; LINE-HEIGHT: 150%; MARGIN-RIGHT: 180pt; TEXT-INDENT: 36pt" dir=rtl align=center><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="TEXT-ALIGN: justify; LINE-HEIGHT: 150%" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="TEXT-ALIGN: justify; LINE-HEIGHT: 150%" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></P>
+<P class=MsoNormal style="TEXT-ALIGN: justify; LINE-HEIGHT: 150%" dir=rtl><SPAN lang=HE style='FONT-FAMILY: "David",sans-serif; mso-no-proof: no; mso-ascii-font-family: Arial; mso-hansi-font-family: Arial'><o:p>&nbsp;</o:p></SPAN></P></DIV></BODY></HTML>
+
+		</div>
+		<center>
+		<span style="font-family:david;font-size:12px;">www.lawdata.co.il - דטה חוק ומשפט</span>
+		</center>
+		<span id="ClipBoardText" style="display:none;"> א בית משפט שלום 46416-10/21 אירנה עזרא נ' הפניקס חברה לביטוח בע"מ (פורסם ב-LawDataֽ 14/04/2024)</span>
+		<input type="hidden" id="eIsInstance" value="0"/>
+		<input type="hidden" id="eIsRtf" value="1" data-path=".\upload\psakdin\2088917.rtf"/>
+		<input type="hidden" id="eIsDoc" value="0" data-path=".\upload\psakdin\2088917.doc"/>
+		<input type="hidden" id="eTotM" value="0"/>
+		<span id="eNote" style="display:none;"></span>
+	</div>
+   	<div id="eContinueReadingWrapper" class="hideInPrint">
+   		<div id="eContinueReadingCaption">רוצה להמשיך לקרוא ?</div>
+   		<div id="eContinueReadingControlPanel">
+   			<div id="bContinueReadingConnect" onclick="openConnectPopup()">התחברות</div>
+   			<div id="bContinueReadingReg" onclick="openRegWnd()">הרשמה למשתמשים חדשים</div>
+		</div>
+   	</div>
+	
+	<script>
+		$(document).ready(function(){
+			$(".markedStr").on("click",function(e){
+				e.preventDefault();
+				var elm=$(".markedStr:eq("+($(this).index(".markedStr")+1)+")")[0];
+				if (elm){
+					window.scrollTo($(elm).offset().left-$(window).width(),$(elm).offset().top);
+					elm.style.border="1px solid black";
+					this.style.border="0";
+				}
+			}); 
+		});
+		function openConnectPopup(){
+			if (parent)parent.openConnectPopup()
+		}
+		function openRegWnd(){
+			if (parent)parent.openRegWnd();
+		}
+	</script>
+</body>
+</html>
