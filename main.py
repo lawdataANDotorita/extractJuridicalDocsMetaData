@@ -1,10 +1,9 @@
-
-
 from striprtf.striprtf import rtf_to_text
 from openai import OpenAI
 import re
 import os
 import json
+import urllib.parse
 import uuid
 
 def extract_rtf_content(file_path):
@@ -93,12 +92,17 @@ for filename in os.listdir(script_dir):
     # Parse the JSON string into a Python dictionary
     json_data = json.loads(answer)
     # Add the link to the current file in the json_data
-    json_data["link"] = os.path.join(script_dir, filename)
+    file_path = os.path.join(script_dir, filename)
+    file_url = f"file:///{urllib.parse.quote(file_path.replace(os.sep, '/'))}"
+    json_data["link"] = file_url
 
     # Create HTML table row with table data elements for each field in the JSON object
     html_row += "<tr>"
     for key, value in json_data.items():
-      html_row += f"<td>{value}</td>"
+      if key == "link":
+        html_row += f"<td><a href='{value}'>קישור</a></td>"
+      else:
+        html_row += f"<td>{value}</td>"
     html_row += "</tr>"
 
 results_template_path = os.path.join(script_dir, 'resultsTemplate.htm')
