@@ -1,8 +1,11 @@
 
 
 from striprtf.striprtf import rtf_to_text
+from openai import OpenAI
 import re
 import os
+import json
+import uuid
 
 def extract_rtf_content(file_path):
     try:
@@ -34,11 +37,6 @@ def extract_rtf_content(file_path):
         print(f"An error occurred: {e}")
         return None
 
-# Example usage
-rtf_file_path = r"C:\Users\shay\my_projects\extractJuridicalDocsMetaData\test.rtf";
-text = extract_rtf_content(rtf_file_path)
-#with open("test.txt", "w") as file:
-#    file.write(text);
 
 script_dir = os.path.dirname(__file__)
 
@@ -50,39 +48,72 @@ with open(apikey_path, 'r') as file:
     api_key = file.read().strip()
 
 
-from openai import OpenAI
-client = OpenAI(api_key=api_key)
+html_row=""
+for filename in os.listdir(script_dir):
+  if filename.endswith('.rtf'):
 
-response = client.chat.completions.create(
-  model="gpt-4o-mini",
-  messages=[
-    {
-      "role": "system",
-      "content": [
+    text = extract_rtf_content(os.path.join(script_dir, filename))
+
+
+    client = OpenAI(api_key=api_key)
+
+    response = client.chat.completions.create(
+      model="gpt-4o-mini",
+      messages=[
         {
-          "type": "text",
-          "text": "אני רוצה שתנתח מסמכים משפטיים שאני אעביר לך.\nמה שאני רוצה כפלט זה את השדות הבאים בלבד: תאריך פרסום, סוג פסק דין, מזהה תיק, אזור בארץ, ערכאה, שופט/ים, צדדים בדיון: צד א' וצד ב'. וגם באי כוח, כלומר עורכי דין מייצגים אם ישנם: עורך דין לצד א' ועורך דין לצד ב'\n\nהתשובות צריכות להיות תמציתיות עם כותרת לכל שדה ותוכן השדה ורווח שורה בין שדה לשדה\n\nכמה הבהרות:\nהתאריך צריך להיות בפורמט של תאריך בלבד, של DD/MM/YYYY\n\nמזהה תיק צריך להיות בפורמט אחד מתוך האפשרויות הבאות:\n1. סוג תיק שמורכב מאחת עד ארבע אותיות בעברית ויכול לכלול גם מרכאות. לאחריו רווח או רווחים ולאחר מכן מספר תיק ולאחר מכן מפריד שיכול להיות גרש או לוכסן ולאחר מכן עוד מספר\n\n\nערכאה ואזור בד\"כ יהיו צמודים אחד לשני. קודם ערכאה ואח\"כ אזור. אזור הוא עיר בארץ.\nלערכאות בית משפט עליון ובית דין ארצי לעבודה שדה האזור ריק.\nדוגמאות:\nבית משפט השלום בחיפה\nכאן הערכאה היא 'בית משפט השלום' והאזור הוא 'חיפה'\n\n\nסוג פסק דין יכול להיות 'פסק דין' או 'החלטה' או 'גזר דין' או משהו מהסוג הזה\n\nמספר הבהרות לגבי הצדדים:\n1. פעמים רבות המילה נגד או נ' מפרידה בין צד א' לצד ב' \n2. אני מבקש פרוט של כל הצדדים ולא מקסימום של שלושה צדדים\n\nלגבי הצדדים: פעמים רבות המילה נגד או נ' מפרידה בין צד א' ל-צד ב'\n\n\n\nאני לא רוצה שדות נוספים מלבד אלו שציינתי.\n\nאת הפלט תוציא בצורת מבנה ג'ייסון ואלה שמות השדות:\nתאריך פרסום, סוג פסק דין, מזהה תיק, אזור בארץ, ערכאה, שופט/ים, צדדים בדיון: צד א' וצד ב'. וגם באי כוח, כלומר עורכי דין מייצגים אם ישנם: עורך דין לצד א' ועורך דין לצד ב'\nתאריך = date\nסוג פסק דין = type\nמזהה תיק = tikID\nאזור = area\nערכאה = court\nשופט = judge\nצד א' = side1\nצד ב' = side2\n\nבא כוח צד א' = lawyer1\nבא כוח צד ב' = lawyer2\n"
-        }
-      ]
-    },
-    {
-      "role": "user",
-      "content": [
+          "role": "system",
+          "content": [
+            {
+              "type": "text",
+              "text": "אני רוצה שתנתח מסמכים משפטיים שאני אעביר לך.\nמה שאני רוצה כפלט זה את השדות הבאים בלבד: תאריך פרסום, סוג פסק דין, מזהה תיק, אזור בארץ, ערכאה, שופט/ים, צדדים בדיון: צד א' וצד ב'. וגם באי כוח, כלומר עורכי דין מייצגים אם ישנם: עורך דין לצד א' ועורך דין לצד ב'\n\nהתשובה צריכה להינתן כייצוג אובייקט json פשוט.\nעם המיפוי של השדות לכותרות הבאות:\ndate = תאריך פרסום\ntype = סוג פסק דין\ntik = מזהה תיק\narea = אזור בארץ\ncourt = ערכאה\njudge = שופט/ים\nside1 = צד א'\nside2 = צד ב'\nlawyer1 = עורך דין לצד א'\nlawyer2 = עורך דין לצד ב' \n\n אבל בלי פירמוט, בלי שורות חדשות בין השדות ובלי תווים מיותרים, רק פסיקים.\n\n\nכמה הבהרות:\nהתאריך צריך להיות בפורמט של תאריך בלבד, של DD/MM/YYYY\n\nמזהה תיק צריך להיות בפורמט אחד מתוך האפשרויות הבאות:\n1. סוג תיק שמורכב מאחת עד ארבע אותיות בעברית ויכול לכלול גם מרכאות. לאחריו רווח או רווחים ולאחר מכן מספר תיק ולאחר מכן מפריד שיכול להיות גרש או לוכסן ולאחר מכן עוד מספר\n\n\nערכאה ואזור בד\"כ יהיו צמודים אחד לשני. קודם ערכאה ואח\"כ אזור. אזור הוא עיר בארץ.\nלערכאות בית משפט עליון ובית דין ארצי לעבודה שדה האזור ריק.\nדוגמאות:\nבית משפט השלום בחיפה\nכאן הערכאה היא 'בית משפט השלום' והאזור הוא 'חיפה'\n\n\nסוג פסק דין יכול להיות 'פסק דין' או 'החלטה' או 'גזר דין' או משהו מהסוג הזה\n\nמספר הבהרות לגבי הצדדים:\n1. פעמים רבות המילה נגד או נ' מפרידה בין צד א' לצד ב' \n2. אני מבקש פרוט של כל הצדדים ולא מקסימום של שלושה צדדים\n\nלגבי הצדדים: פעמים רבות המילה נגד או נ' מפרידה בין צד א' ל-צד ב'\n\n\n\nאני לא רוצה שדות נוספים מלבד אלו שציינתי."
+              }
+          ]
+        },
         {
-          "type": "text",
-          "text":text
-        }
-      ]
-    },
-  ],
-  temperature=0,
-  max_tokens=1000,
-  top_p=1,
-  frequency_penalty=0,
-  presence_penalty=0,
-  response_format={
-    "type": "text"
-  }
-)
-sAnswer = response.choices[0].message.content
-print ("answer: "+sAnswer)
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text":text
+            }
+          ]
+        },
+      ],
+      temperature=0,
+      max_tokens=1000,
+      top_p=1,
+      frequency_penalty=0,
+      presence_penalty=0,
+      response_format={
+        "type": "json_object"
+      }
+    )
+    answer = response.choices[0].message.content
+
+    # Parse the JSON string into a Python dictionary
+    json_data = json.loads(answer)
+    # Add the link to the current file in the json_data
+    json_data["link"] = os.path.join(script_dir, filename)
+
+    # Create HTML table row with table data elements for each field in the JSON object
+    html_row += "<tr>"
+    for key, value in json_data.items():
+      html_row += f"<td>{value}</td>"
+    html_row += "</tr>"
+
+results_template_path = os.path.join(script_dir, 'resultsTemplate.htm')
+
+with open(results_template_path, 'r',encoding="utf-8") as file:
+  results = file.read().strip()
+
+# Replace *&* in results with html_row
+results = results.replace("*&*", html_row)
+
+# Save the modified results to a new HTML file
+unique_number = uuid.uuid4().int
+new_results_name = f"results_{unique_number}.htm"
+output_path = os.path.join(script_dir, new_results_name)
+with open(output_path, 'w', encoding='utf-8') as file:
+  file.write(results)
+
+  
