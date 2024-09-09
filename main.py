@@ -5,6 +5,7 @@ import os
 import json
 import urllib.parse
 import uuid
+import sys
 
 def extract_rtf_content(file_path):
     try:
@@ -36,8 +37,21 @@ def extract_rtf_content(file_path):
         print(f"An error occurred: {e}")
         return None
 
+def get_script_dir():
+    if getattr(sys, 'frozen', False):
+        # If the application is run as a bundle, the PyInstaller bootloader
+        # sets the sys._MEIPASS attribute to the path of the temporary directory.
+        print("Running in a PyInstaller bundle")
+        print(f"os.getcwd(): {os.getcwd()}")
+        return os.getcwd()
+    else:
+        # If the application is run as a script, use the directory of the script file.
+        print("Running as a script")
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        print(f"script_dir: {script_dir}")
+        return script_dir
 
-script_dir = os.path.dirname(__file__)
+script_dir = get_script_dir()
 
 # Construct the full path to apikey.txt
 apikey_path = os.path.join(script_dir, 'apikey.txt')

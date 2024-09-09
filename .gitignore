@@ -1,1 +1,7 @@
 apikey.txt
+build/
+dist/
+results*
+*.exe
+*.spec
+
