@@ -1,7 +1,11 @@
 apikey.txt
 build/
 dist/
-results*
+results_*
 *.exe
 *.spec
+*.xml
+*.rtf
+*.htm
+*.html
 
