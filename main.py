@@ -35,24 +35,7 @@ def extract_rtf_content(file_path):
 
             text=re.sub(r'[|]+', ' ', text);
 
-            
-            lines = text.split('\n')
-            extracted_lines = []
-            end_phrases = ["פסק דין", "פסק-דין", "החלטה", "גזר-דין", "גזר דין"]
-            
-            for line in lines:
-                extracted_lines.append(line)
-                if any(phrase in line for phrase in end_phrases):
-                    break
-            date_pattern = re.compile(r'\b\d{1,2}\W+(?:ינואר|פברואר|מרץ|אפריל|מאי|יוני|יולי|אוגוסט|ספטמבר|אוקטובר|נובמבר|דצמבר)\W+\d{4}\b|\b\d{2}/\d{2}/\d{4}\b')
-            for i in range(len(lines) - 1, -1, -1):
-                if date_pattern.search(lines[i]):
-                    extracted_lines.append(lines[i])
-                    break
-            textNew = '\n'.join(extracted_lines)
-
-
-            return textNew;
+            return text;
     except Exception as e:
         print(f"An error occurred: {e}")
         return None
@@ -93,6 +76,21 @@ for filename in os.listdir(script_dir):
         fileoftype=True
 
     if fileoftype:
+      lines = text.split('\n')
+      extracted_lines = []
+      end_phrases = ["פסק דין", "פסק-דין", "החלטה", "גזר-דין", "גזר דין"]
+      
+      for line in lines:
+          extracted_lines.append(line)
+          if any(phrase in line for phrase in end_phrases):
+              break
+      date_pattern = re.compile(r'\b\d{1,2}\W+(?:ינואר|פברואר|מרץ|אפריל|מאי|יוני|יולי|אוגוסט|ספטמבר|אוקטובר|נובמבר|דצמבר)\W+\d{4}\b|\b\d{2}/\d{2}/\d{4}\b')
+      for i in range(len(lines) - 1, -1, -1):
+          if date_pattern.search(lines[i]):
+              extracted_lines.append(lines[i])
+              break
+      textNew = '\n'.join(extracted_lines)
+
       response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
@@ -110,7 +108,7 @@ for filename in os.listdir(script_dir):
             "content": [
               {
                 "type": "text",
-                "text":text
+                "text":textNew
               }
             ]
           },
