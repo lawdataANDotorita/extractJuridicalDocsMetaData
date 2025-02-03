@@ -70,20 +70,35 @@ try:
   with open(apikey_path, 'r') as file:
       api_key = file.read().strip()
 
+
+  prmopt_path=os.path.join(script_dir, 'prompt.txt')
+  with open(prmopt_path, 'r', encoding='utf-8') as file:
+    prompt = file.read().strip()
+  
+
   client = OpenAI(api_key=api_key)
 
-  html_row=""
-  for filename in os.listdir(script_dir):
+  samples_dir=os.path.join(script_dir, 'docs_samples')
+  corrupted_files_dir=os.path.join(script_dir, 'corrupted_files')
+  # Create the corrupted_files_dir if it does not exist
+  if not os.path.exists(corrupted_files_dir):
+    os.makedirs(corrupted_files_dir)
+
+  html_rows=""
+  file_num=0
+  for filename in os.listdir(samples_dir):
+    try:
       fileoftype=False
       if filename.endswith('.xml'):
-        text = read_xml(os.path.join(script_dir, filename))
+        text = read_xml(os.path.join(samples_dir, filename))
         fileoftype=True
       elif filename.endswith('.rtf'):
-          text = extract_rtf_content(os.path.join(script_dir, filename))
+          text = extract_rtf_content(os.path.join(samples_dir, filename))
           fileoftype=True
 
       if fileoftype:
-
+        file_num += 1
+        file_name_new = f"{file_num}{os.path.splitext(filename)[1]}"
         # replace word processing characters with real ones
         # Processing the text
         # Replace '\r' with '\n'
@@ -118,8 +133,8 @@ try:
               "content": [
                 {
                   "type": "text",
-                  "text": "אני רוצה שתנתח מסמכים משפטיים שאני אעביר לך.\nמה שאני רוצה כפלט זה את השדות הבאים בלבד ובסדר הבא:\nתאריך פרסום\nסוג פסק דין\nמזהה תיק\nערכאה\nאזור בארץ\nשופט/ים\nצד א' בדיון\nצד ב' בדיון\nבא כוח צד א'\nבא כוח צד ב'\n\nכל ערך בשורה נפרדת ובלי הכותרות של השדות\n\n\nאם אין ערך לשדה, לרשום 'אין ערך' בשורה נפרדת.\nכמה הבהרות:\nהתאריך צריך להיות בפורמט של תאריך בלבד, של DD/MM/YYYY\n\nמזהה תיק = rec identifier:\nthe rec identifier component should be retrieved step by step. the first step is to retrieve the bbb part. \nthe bbb part is composed of up to 4 characters, . the characters could be either letters in hebrew or double quote character (\"). \n\nin the next phase we should retrieve the second part. the second part should contain a sequence composed of several numbers separated by either hyphen (-) or backslash(/). the rec identifier is a concatenation of the first and second parts, and between them separates a space char.\ne.g.:\nthe first part could be: א\"ג, א, ת\"פ, צפ\nthe second part could be: 122-33, 122-33-44, 122/33, 122/33-44\n\nand the entire rec identifier can look like this:\n122-33 א\"ג\n122-33 אג\n122-33-44 א\"ג\n122/33 א\"ג\n122/33-44 א\"ג\nת\"פ 45470-11-22\n\nערכאה היא בית משפט: בית משפט עליון או בית המשפט המחוזי או בית משפט השלום ועוד ועוד\nואזור הוא עיר בארץ: באר שבע או אשקלון או תל אביב או רמלה או חדרה וכ\"ו\nלערכאות בית משפט עליון ובית דין ארצי לעבודה שדה האזור ריק.\nדוגמאות:\nבית משפט השלום בחיפה\nכאן הערכאה היא 'בית משפט השלום' והאזור הוא 'חיפה'\nדוגמאות לאזור:\nבאר שבע\nחדרה\nירושלים\nתל-אביב\nעפולה\n\nבדרך כלל שדה הערכאה והאזור יגיעו צמודים זה לזה, קודם הערכאה ואז האזור, למשל:\nבית משפט השלום בהרצליה\nבית המשפט המחוזי בעפולה\n\n\n\nבשדה שופט אני מבקש שם של שופט/ת או רשם/ת בלבד, בלי תואר: בלי רשם בכיר או נציג או שופט. רק את השם המלא.\n\nסוג פסק דין יכול להיות 'פסק דין' או 'החלטה' או 'גזר דין' או משהו מהסוג הזה\n\nמספר הבהרות לגבי הצדדים:\n1. פעמים רבות המילה נגד או נ' מפרידה בין צד א' לצד ב' \n2. אני מבקש פרוט של כל הצדדים ולא מקסימום של שלושה צדדים\n\nלגבי הצדדים: פעמים רבות המילה נגד או נ' מפרידה בין צד א' ל-צד ב'\n\nלגבי באי כוח - זה לא חייב להיות שמות של אנשים, זה יכול להיות גם שמות של מוסדות.\n\n\nאני לא רוצה שדות נוספים מלבד אלו שציינתי."
-                  }
+                  "text": prompt
+                }
               ]
             },
             {
@@ -133,40 +148,52 @@ try:
           frequency_penalty=0,
           presence_penalty=0,
           response_format={
-            "type": "text"
+            "type": "json_object"
           }
         )
-        answer = response.choices[0].message.content
-        arAnswer = answer.split('\n')
-        arAnswer = [element.strip() for element in arAnswer]
+        answer = json.loads(response.choices[0].message.content)
 
-        json_data={"date":arAnswer[0], "type":arAnswer[1], 
-          "tik":arAnswer[2], "area":arAnswer[4], 
-          "court":arAnswer[3], "judge":arAnswer[5], 
-          "side1":arAnswer[6], "side2":arAnswer[7], 
-          "lawyer1":arAnswer[8], "lawyer2":arAnswer[9]}
-        
+
+        json_data={"num":file_num,"date":answer["תאריך"], "type":answer["סוג פסק דין"], 
+          "tik":answer["מזהה התיק"], "area":answer["אזור"], 
+          "court":answer["ערכאה"], "judge":answer["שופטים"], 
+          "side1":answer["צד א"], "side2":answer["צד ב"], 
+          "lawyer1":answer["בא כוח צד א"], "lawyer2":answer["בא כוח צד ב"]}
+
+        # Check if any value in json_data is a list and concatenate its elements with a column delimiter
+        for key, value in json_data.items():
+          if isinstance(value, list):
+            json_data[key] = ', '.join(value)
+
+
         # Add the link to the current file in the json_data
         file_path = os.path.join(script_dir, filename)
         file_url = f"file:///{urllib.parse.quote(file_path.replace(os.sep, '/'))}"
         json_data["link"] = file_url
 
         # Create HTML table row with table data elements for each field in the JSON object
-        html_row += "<tr>"
+        html_rows += "<tr>"
         for key, value in json_data.items():
           if key == "link":
-            html_row += f"<td><a href='{value}'>קישור</a></td>"
+            html_rows += f"<td><a href='{value}'>קישור</a></td>"
           else:
-            html_row += f"<td>{value}</td>"
-        html_row += "</tr>"
+            html_rows += f"<td>{value}</td>"
+        html_rows += "</tr>"
+        print(f"Processed file: {file_num}")
+        os.rename(os.path.join(samples_dir, filename), os.path.join(samples_dir, file_name_new))
+    except Exception as e:
+      print(f"An error occurred inside loop: {e}. file name is - {filename}")
+      # Move the corrupted file to the corrupted_files_dir
 
+      corrupted_file_path = os.path.join(corrupted_files_dir, file_name_new)
+      os.rename(os.path.join(samples_dir, filename), corrupted_file_path)
   results_template_path = os.path.join(script_dir, 'resultsTemplate.htm')
 
   with open(results_template_path, 'r',encoding="utf-8") as file:
     results = file.read().strip()
 
-  # Replace *&* in results with html_row
-  results = results.replace("*&*", html_row)
+  # Replace *&* in results with html_rows
+  results = results.replace("*&*", html_rows)
 
   # Save the modified results to a new HTML file
   unique_number = uuid.uuid4().int
@@ -176,7 +203,7 @@ try:
     file.write(results)
 
 except Exception as e: 
-  print(f"An error occurred: {e}");
+  print(f"An error occurred: {e}. file name is - {filename}");
   read_key()
 
 
